@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "Participant": {
+      "title": "Participant",
+      "description": "A user who participated in the OX Quiz event.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Full name of the participant" },
+        "dob": { "type": "string", "description": "Date of birth (YYYY-MM-DD)" },
+        "phone": { "type": "string", "description": "Phone number" },
+        "region": { "type": "string", "description": "Region of residence" },
+        "score": { "type": "number", "description": "Quiz score" },
+        "answers": { "type": "array", "description": "List of user answers" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of participation" }
+      },
+      "required": ["name", "dob", "phone", "region", "score", "createdAt"]
+    },
+    "QuizQuestion": {
+      "title": "QuizQuestion",
+      "description": "An OX quiz question.",
+      "type": "object",
+      "properties": {
+        "question": { "type": "string" },
+        "answer": { "type": "boolean" },
+        "explanation": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["question", "answer", "order"]
+    },
+    "CMSContent": {
+      "title": "CMSContent",
+      "description": "Modular content for the website.",
+      "type": "object",
+      "properties": {
+        "section": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["section", "title", "content", "updatedAt"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Global website settings.",
+      "type": "object",
+      "properties": {
+        "primaryColor": { "type": "string" },
+        "accentColor": { "type": "string" },
+        "bannerUrl": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/participants/{participantId}": {
+      "schema": "Participant",
+      "description": "Collection of event participants."
+    },
+    "/quiz_questions/{questionId}": {
+      "schema": "QuizQuestion",
+      "description": "Collection of quiz questions."
+    },
+    "/cms_content/{contentId}": {
+      "schema": "CMSContent",
+      "description": "Collection of CMS content blocks."
+    },
+    "/settings/{settingId}": {
+      "schema": "Settings",
+      "description": "Global configuration settings."
+    }
+  }
+}
